@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: privhost 
+  namespace: default
+spec:
+  template:
+    metadata:
+      labels:
+        name: privhost
+    spec:
+      containers:
+        - name: privub
+          image: lumjjb/privhost:latest
+          imagePullPolicy: Always
+          command: [ "/bin/bash", "-c", "--" ]
+          args: [ "while true; do sleep 100; done;" ]
+          securityContext:
+           privileged: true
+          volumeMounts:
+            - mountPath: /host_root
+              name: root-vol
+          env:
+          - name: HOST_ROOT
+            value: /host_root
+      volumes:
+        - name: root-vol
+          hostPath:
+            path: /
