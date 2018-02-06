@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: privub
+  labels:
+    app: privub-demo
+spec:
+  containers:
+    - name: privub
+      image: lumjjb/privhost:latest
+      imagePullPolicy: Always
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 100; done;" ]
+      securityContext:
+       privileged: true
+      volumeMounts:
+        - mountPath: /host_root
+          name: root-vol
+      env:
+      - name: HOST_ROOT
+        value: /host_root
+  volumes:
+    - name: root-vol
+      hostPath:
+        path: /
+  #nodeSelector: <- Add node selector if required
