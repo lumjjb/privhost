@@ -4,6 +4,10 @@ This project is meant to help debugging on a kubernetes worker for use by a clus
 
 # Usage
 
+The simplest way is to use the image that has already been built. If you would like to do that, it is sufficient to do:
+
+```kubectl create -f k create -f https://raw.githubusercontent.com/lumjjb/privhost/master/yaml/privhost_daemonset.yaml```
+
 ## Building the image
 
 ```
