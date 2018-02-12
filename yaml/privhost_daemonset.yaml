@@ -9,6 +9,7 @@ spec:
       labels:
         name: privhost
     spec:
+      hostPID: true
       containers:
         - name: privub
           image: lumjjb/privhost:latest
